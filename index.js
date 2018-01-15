@@ -15,7 +15,7 @@ app.get('/api/product',(req,res)=>{
   res.end()
 })
 app.get('/api/product/:productId',(req,res)=>{
-  //res.send({message:`Hola ${req.params.name}`})
+  res.send({message:`Hola ${req.params.productId}`})
   res.end()
 })
 //curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/api/login
@@ -26,15 +26,26 @@ app.post('/api/product',(req,res)=>{
   console.log(req.body)
   let product = new Product()
   product.name = req.body.name   
-  product.picture= req.body.picture
-  product.price= req.body.price
-  product.category= req.body.category
-  product.description= req.body.description
- 
-  product.save(function (err, productStored){
+  //product.picture= req.body.picture
+  //product.price= req.body.price
+  //product.category= req.body.category
+  //product.description= req.body.description
+
+/*var kitty = new Product({ name: 'Zildjian' });
+console.log(kitty)
+kitty.save(function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('meow');
+  }
+});*/
+
+
+  product.save((err, productStored)=>{
     if(err) res.status(500).send({message:'error al guardar en bd'})
-    //res.status(200).send({product: productStored})
-    //res.end()
+    res.status(200).send({product: productStored})
+    res.end()
   }) 
 })
 app.put('/api/product/:productId',(req,res)=>{

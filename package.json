@@ -1,7 +1,7 @@
 {
   "name": "curso",
   "version": "1.0.0",
-  "description": "",
+  "description": "En este repositorio voy a ir subiendo el código desarrollado para el proyecto intermodular PSP-DI-AD.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
@@ -15,5 +15,13 @@
     "mongoose": "^4.13.9",
     "nodemon": "^1.14.11",
     "require": "^2.4.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/profedelmodulo/proyectoIntermodular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/profedelmodulo/proyectoIntermodular/issues"
+  },
+  "homepage": "https://github.com/profedelmodulo/proyectoIntermodular#readme"
 }
