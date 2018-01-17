@@ -30,9 +30,7 @@ app.post('/api/product',(req,res)=>{
   //product.category= req.body.category
   //product.description= req.body.description
 
-  console.log("el producto es" )
   console.log(p)
- 
   p.save(function (err, productStored){
     if(err) res.status(500).send({message:'error al guardar en bd'})
     res.status(200).send({producto: productStored})
