@@ -2,3 +2,4 @@
 backups/
 node_modules/
 package-lock.json
+geckodriver.log
