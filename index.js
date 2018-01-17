@@ -15,19 +15,31 @@ app.use(bodyParser.json())
 //curl -s -o /dev/null -w "%{http_code}" "Content-Type: applicatz","password":"xyz"}' http://localhost:3000/api/product
 app.post('/api/product',(req,res)=>{
   //res.status(200).send({message: 'POST /api/prdocut'})
-  console.log(req.body)
-  let p = new Product(req.body)
-  //p.name = req.body.name   
-  //p.picture= req.body.picture
-  //p.price= req.body.price
+  //console.log("el req.body")
+  //console.log(req.body)
+  let p = new Product()
+  console.log(req.body.name   )
+  console.log( req.body.picture)
+  console.log(req.body.price)
+  p.name = req.body.name   
+  p.picture= req.body.picture
+  p.price= req.body.price
   //product.category= req.body.category
   //product.description= req.body.description
+  //console.log(p)
 
-  console.log(p)
-  p.save(function (err, productStored){
+  p.save(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('meow');
+    }
+  });
+
+  /*p.save((err, productStored)=>{
     if(err) res.status(500).send({message:'error al guardar en bd'})
-    res.status(200).send({producto: productStored})
-  }) 
+    res.status(200).send({product: productStored})
+  }) */
 })
 
 app.get('/api/product/:productId',(req,res)=>{
@@ -77,10 +89,9 @@ app.put('/api/product/:productId',(req,res)=>{
 })
 
 
-mongoose.connect('mongodb://localhost:27017/shop',(err)=>{
+mongoose.connect('mongodb://localhost:27017/shop', { useMongoClient: true },(err)=>{
   if(err) throw err
   console.log('Conectado a mongod')
-  
   //Levantar puerto 
   app.listen(3000,()=>{
     console.log("api rest ")
