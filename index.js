@@ -10,13 +10,6 @@ const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.get('/api/book',(req,res)=>{
-  //res.send({message:`Hola ${req.params.name}`})
-  res.send(200, {products:[]})
-  res.end()
-})
-
-
 //curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/api/login
 //https://stackoverflow.com/questions/7172784/how-to-post-json-data-with-curl-from-terminal-commandline-to-test-spring-rest
 //curl -s -o /dev/null -w "%{http_code}" "Content-Type: applicatz","password":"xyz"}' http://localhost:3000/api/product
