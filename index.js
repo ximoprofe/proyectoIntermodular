@@ -13,33 +13,42 @@ app.use(bodyParser.json())
 //curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/api/login
 //https://stackoverflow.com/questions/7172784/how-to-post-json-data-with-curl-from-terminal-commandline-to-test-spring-rest
 //curl -s -o /dev/null -w "%{http_code}" "Content-Type: applicatz","password":"xyz"}' http://localhost:3000/api/product
-app.post('/api/product',(req,res)=>{
-  //res.status(200).send({message: 'POST /api/prdocut'})
-  //console.log("el req.body")
-  //console.log(req.body)
-  let p = new Product()
-  console.log(req.body.name   )
-  console.log( req.body.picture)
-  console.log(req.body.price)
-  p.name = req.body.name   
-  p.picture= req.body.picture
-  p.price= req.body.price
-  //product.category= req.body.category
-  //product.description= req.body.description
-  //console.log(p)
+app.post('/api/user',(req,res)=>{
+  let u= new Shop()
+  u.name = req.body.name   
+  u.save(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('User inserted!');
+    }
+  });
 
+})
+app.post('/api/shop',(req,res)=>{
+  let s= new Shop()
+  s.name = req.body.name   
+  s.save(function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Shop inserted!');
+    }
+  });
+}
+
+})
+app.post('/api/product',(req,res)=>{})
+  let p = new Product()
+  console.log(req.body.name)
+  p.name = req.body.name   
   p.save(function (err) {
     if (err) {
       console.log(err);
     } else {
-      console.log('meow');
+      console.log('Product inserted!');
     }
   });
-
-  /*p.save((err, productStored)=>{
-    if(err) res.status(500).send({message:'error al guardar en bd'})
-    res.status(200).send({product: productStored})
-  }) */
 })
 
 app.get('/api/product/:productId',(req,res)=>{
@@ -50,6 +59,28 @@ app.get('/api/product/:productId',(req,res)=>{
     if (!product) return res.status(404).send({message:'el producto no existe'})
     //res.status(200).send({product: product})
     res.status(200).send({product: product})
+  })
+})
+
+app.get('/api/user/:userId',(req,res)=>{
+  let userId = req.params.userId
+  console.log("productID " + userId)
+  User.findById(userId, (err, user)=>{
+    if (err) return res.status(500).send({message:'error al realizar la peticion'})
+    if (!user) return res.status(404).send({message:'el useer no existe'})
+    //res.status(200).send({product: product})
+    res.status(200).send({user: user})
+  })
+})
+
+app.get('/api/shop/:shopId',(req,res)=>{
+  let shopId = req.params.shopId
+  console.log("shopId" + shopId)
+  Shop.findById(shopId, (err, shop)=>{
+    if (err) return res.status(500).send({message:'error al realizar la peticion'})
+    if (!shop) return res.status(404).send({message:'el shop no existe'})
+    //res.status(200).send({product: product})
+    res.status(200).send({user: user})
   })
 })
 
