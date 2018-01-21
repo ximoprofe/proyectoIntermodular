@@ -13,7 +13,6 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongoose": "^4.13.9",
-    "nodemon": "^1.14.11",
     "require": "^2.4.20"
   },
   "repository": {
@@ -23,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/profedelmodulo/proyectoIntermodular/issues"
   },
-  "homepage": "https://github.com/profedelmodulo/proyectoIntermodular#readme"
+  "homepage": "https://github.com/profedelmodulo/proyectoIntermodular#readme",
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
 }
